@@ -800,8 +800,12 @@ class GPSDODevice(GPSDO):
         :rtype: dict
         """
 
-        buf = self.device.get_feature_report(9, 60)
-
+        # miniGPS requires 61 bytes
+        buf = self.device.get_feature_report(9, 61)
+        
+        # Chop off extra lower byte
+        buf = buf[1:]
+        
         result = {}
         result['out1']   = bool(buf[0] & self.OUTPUT1)
         result['out2']   = bool(buf[0] & self.OUTPUT2)
