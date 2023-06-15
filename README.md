@@ -316,6 +316,19 @@ fout1 = fosc / (N1_HS * NC1_LS)        = 450.000 Hz  ... 808.000 MHz
 fout2 = fosc / (N1_HS * NC2_LS)        = 450.000 Hz  ... 808.000 MHz
 ```
 
+### mini GPS Reference Clock
+
+This required a small change to the command buffer to work.  Not sure if this
+is due to the device or down the version of the hid library I am using.
+
+One very odd feature is that the default config for 10MHz uses an fosc of 
+6.1GHz which is way beyond the alleged maximum of 5.67GHz.
+
+If I use the clock calculator for the Si5328 it uses an fosc of 4.88 GHz.
+These settings also work correctly with the miniGPS and are reported 
+correctly by the describe function.  I am therefore led to believe that
+the miniGPS really is working with this significant overclock.
+
 Future plans
 ------------
 
